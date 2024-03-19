@@ -75,7 +75,7 @@ void szukajwezlow(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int *
 				if (x[i][0] == 'P' ||  x[i][2] == 'P' ||  x[i-1][1] == 'P' ||  x[i+1][1] == 'P'){
 				
 					*wezel_P = *rozdroza;
-
+				//zapisanie numeru wezla znajdujacegp sie obok wyjscia
 				} else if (x[i][0] == 'K' ||  x[i][2] == 'K' ||  x[i-1][1] == 'K' ||  x[i+1][1] == 'K'){
 				
 					*wezel_K = *rozdroza;
