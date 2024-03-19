@@ -25,7 +25,7 @@ void czytaj(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
                         }
                 }
 
-        // potem mamy repis wiec wczytujemy tylko 1 dolna linijke
+        // potem mamy przepisz wiec wczytujemy tylko 1 dolna linijke
         }else{
 
                 i = 0;
