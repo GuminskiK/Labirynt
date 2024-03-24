@@ -1,6 +1,7 @@
-#include "Czytaj.h"
+#include "fileReader.h"
 #include <stdio.h>
-void czytaj(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
+
+void readTXT(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
 	
 	//zmienne do operacji
         int c,i;
@@ -39,7 +40,7 @@ void czytaj(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
         }
 }
 
-void przepisz(char x[][3], int kolumny){ //przepisuje dolne wiersze tablicy o jeden wiersz w gore
+void rewrite(char x[][3], int kolumny){ //przepisuje dolne wiersze tablicy o jeden wiersz w gore
 
 	//zwykla petla 2 linie a potem kolumny kolumn
         for (int g = 0; g < 2; g++){

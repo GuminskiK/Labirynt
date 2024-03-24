@@ -1,12 +1,11 @@
 #include <stdio.h>
 
-#ifndef _Czytaj_
-#define _Czytaj_
+#ifndef _fileReader_
+#define _fileReader_
 
-#include <stdio.h>
 #include <stdlib.h>
 
-void czytaj(char x[][3], FILE * f, int y);
-void przepisz(char x[][3], int kolumny);
+void readTXT(char x[][3], FILE * f, int y);
+void rewrite(char x[][3], int kolumny);
 
 #endif

@@ -1,2 +1,2 @@
 all: 
-	gcc main.c Czytaj.c Czytaj.h Wczyt_podst.c Wczyt_podst.h graph.c graph.h maze_coder.c maze_coder.h
+	gcc main.c fileReader.c fileReader.h mazePreanalyzer.c mazePreanalyzer.h graphCreator.c graphCreator.h mazeAnalyzer.c mazeAnalyzer.h

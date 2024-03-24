@@ -1,6 +1,6 @@
-#include "graph.h"
+#include "graphCreator.h"
 
-void CreateGraph(char x[][3], int kolumny, int rozdroza, int * edge,int wiersze, FILE * f){
+void createGraph(char x[][3], int kolumny, int rozdroza, int * edge,int wiersze, FILE * f){
 
 	//edg - do przetrzymywania liczb, medg - do przechowywania ID liczb
 	int edg[kolumny -1];
@@ -9,7 +9,7 @@ void CreateGraph(char x[][3], int kolumny, int rozdroza, int * edge,int wiersze,
         int ost = 0;
         int unknown = -3;
 	
-	Node gr[1];	
+	edge_t gr[1];	
 
 	//sprawdzamy czy miejsce sie zaalokowalo
 	if (edg == NULL || medg == NULL) {
@@ -31,16 +31,16 @@ void CreateGraph(char x[][3], int kolumny, int rozdroza, int * edge,int wiersze,
 
                 if (y >= 1){
 
-                        przepisz( x, kolumny);
+                        rewrite( x, kolumny);
                 }
 
-                czytaj( x, f, y);
-                analyzemaze(x, kolumny, &ost, edg, medg, &unknown, gr,rozdroza, edge, fo);
+                readTXT( x, f, y);
+                analyzeMaze(x, kolumny, &ost, edg, medg, &unknown, gr,rozdroza, edge, fo);
 
         }
 
 	int Z = (*edge) + (rozdroza/7)  +3 ;
-        Node Graph[Z];
+        edge_t Graph[Z];
 	printf("Z %i E %i\n",Z, *edge);
 	if (Graph == NULL) {
 
@@ -96,12 +96,12 @@ void CreateGraph(char x[][3], int kolumny, int rozdroza, int * edge,int wiersze,
                 
 		if (y >= 1){
 			
-                        przepisz( x, kolumny);
+                        rewrite( x, kolumny);
                 }
 
-                czytaj( x, f, y);
+                readTXT( x, f, y);
 		//print_odczyt(x,kolumny);
-                analyzemaze(x, kolumny, &ost, edg, medg, &unknown, Graph, rozdroza, edge, fo);
+                analyzeMaze(x, kolumny, &ost, edg, medg, &unknown, Graph, rozdroza, edge, fo);
 		//for(int o = 1; o < kolumny -1 ; o++){
 		//	printf("\n EDG: %i MEDG:%i  \n ", edg[o], medg[o]);
 		//}

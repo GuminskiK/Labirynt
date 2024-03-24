@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "Czytaj.h"
-#include "Wczyt_podst.h"
-#include "graph.h"
-#include "maze_coder.h"
+
+#include "mazePreanalyzer.h"
+#include "graphCreator.h"
+#include "mazeAnalyzer.h"
 
 int main (int argc, char ** argv){ //glowna funkcja
 	
@@ -18,8 +18,8 @@ int main (int argc, char ** argv){ //glowna funkcja
 	int kolumny = 0;
 	int wiersze = 1;
 	
-	policz_kolumny(f, &kolumny);
-	policz_wiersze(f, &wiersze);
+	countColumns (f, &kolumny);
+	countRows (f, &wiersze);
 	
 	printf("Kolumny: %i Wiersze: %i", kolumny, wiersze);
 	
@@ -47,14 +47,14 @@ int main (int argc, char ** argv){ //glowna funkcja
 		//przepisujemy dopiero jak cos wczytamy dlatego od y >= 1
 		if (y >= 1){
 			
-			przepisz( x, kolumny);
+			rewrite ( x, kolumny);
 		}
 		
 		//wczytywanie
-		czytaj( x, f, y);
+		readTXT ( x, f, y);
 
 		//funkcja sprawdzajaca czy w trzech liniach w srodkowej sa rozdroza
-		szukajwezlow(x, kolumny, &rozdroza, &wezel_P, &wezel_P);
+		countNodes (x, kolumny, &rozdroza, &wezel_P, &wezel_P);
 
 		//print_odczyt(x,kolumny);
 	}
@@ -66,7 +66,7 @@ int main (int argc, char ** argv){ //glowna funkcja
 	rewind(f);	
 
 	//analiza labiryntu by stworzyc graf
-	CreateGraph(x,kolumny, rozdroza, &edge, wiersze, f);
+	createGraph(x,kolumny, rozdroza, &edge, wiersze, f);
 	
 	//INT main
 	return 0;

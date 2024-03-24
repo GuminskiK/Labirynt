@@ -1,7 +1,7 @@
-#include "maze_coder.h"
+#include "mazeAnalyzer.h"
 
 
-void IDmanager( int * edg, int medg[], int kolumny){ //funkcja do zmiany updatu edg dla danego ID
+void updateValue( int * edg, int medg[], int kolumny){ //funkcja do zmiany updatu edg dla danego ID
 
 	//zmienna do operacji z ID ktore ma sciana, aby nie robilo problemow
 	int ID_now  = -1;
@@ -49,7 +49,7 @@ void IDmanager( int * edg, int medg[], int kolumny){ //funkcja do zmiany updatu 
 
 }
 
-void IDdestroyer( int * edg, int medg[], int kolumny, int ID, int i){ //funkcja do zaznaczania zaulkow
+void markDeadEnd ( int * edg, int medg[], int kolumny, int ID, int i){ //funkcja do zaznaczania zaulkow
 
 	//destrukcja po jpn
 	//printf("\n \n HAKAI, %i", ID);
@@ -65,7 +65,7 @@ void IDdestroyer( int * edg, int medg[], int kolumny, int ID, int i){ //funkcja 
 	}
 }
 
-void IDupdate( int medg[], int ID, int newID, int kolumny ){ //funkcja do updatu medg czyli id
+void updateID ( int medg[], int ID, int newID, int kolumny ){ //funkcja do updatu medg czyli id
 
 	//przechodzimy przez caly wiersz i jak cos ma stare id to zamieniamy na nowe
 	for(int z = 1; z < kolumny-1; z++){
@@ -78,7 +78,7 @@ void IDupdate( int medg[], int ID, int newID, int kolumny ){ //funkcja do updatu
 	}
 }
 
-int kierunekkod (int ID, char X){ //kodowanie kierunku w id
+int codeDirection ( int ID, char X){ //kodowanie kierunku w id
 
 	//kierunek zapisujemy w ostatniej cyfrze dlatego mnozymy razy 10 i dodajemy liczbe odpowiadajaca kierunkowi
 	int newID = ID * 10;
@@ -104,7 +104,7 @@ int kierunekkod (int ID, char X){ //kodowanie kierunku w id
 
 }
 
-char kierunekdekod(int ID){ //funkcja odczytujaca kierunek z zakodowanego id
+char decodeDirection ( int ID){ //funkcja odczytujaca kierunek z zakodowanego id
 	
 	char X;
 	int IDX = ID % 10;
@@ -128,7 +128,7 @@ char kierunekdekod(int ID){ //funkcja odczytujaca kierunek z zakodowanego id
 	return X ;
 }
 
-int kierunek(char kierunek1, char kierunek2){
+int direction2Number (char kierunek1, char kierunek2){
 	
 	int x;
 	switch(kierunek1){
@@ -204,7 +204,7 @@ int kierunek(char kierunek1, char kierunek2){
 	return x;
 }
 
-void graphManager(Node Graph[], int i, int rozdroza, int count){ //sprawidzić czy nie wychodzi
+void moveEdges ( edge_t Graph[], int i, int rozdroza, int count){ //sprawidzić czy nie wychodzi
 	
 	count += Graph[i].X;
 	i++;
@@ -238,7 +238,7 @@ void graphManager(Node Graph[], int i, int rozdroza, int count){ //sprawidzić c
 		i++;
 	}
 }
-void addNode(Node Graph[], int IDH, int IDL, int Value, int kierunek, int rozdroza){
+void addEdge ( edge_t Graph[], int IDH, int IDL, int Value, int kierunek, int rozdroza){
 	/*
 	//sprawdz czy nie wychodzi za
 	int i = 0;
@@ -287,7 +287,7 @@ void addNode(Node Graph[], int IDH, int IDL, int Value, int kierunek, int rozdro
 			
 			} else {
 			
-				graphManager(Graph,i, rozdroza, count); //przenosi reszte do gory
+				moveEdges(Graph,i, rozdroza, count); //przenosi reszte do gory
 				
 				Graph[i+1].ID = IDL;
 	                        Graph[i+1].Value = Value + 1;
@@ -304,7 +304,7 @@ void addNode(Node Graph[], int IDH, int IDL, int Value, int kierunek, int rozdro
 			int tempg = Graph[i].X;			
 			Graph[i].X = IDH - count;	
 
-			graphManager(Graph,i, rozdroza, count); //przenosi reszte do gory
+			moveEdges(Graph,i, rozdroza, count); //przenosi reszte do gory
 
 			Graph[i+1].ID = IDL;
                         Graph[i+1].Value = Value + 1;
@@ -322,7 +322,7 @@ void addNode(Node Graph[], int IDH, int IDL, int Value, int kierunek, int rozdro
 	}
 }
 
-void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int * unknown, Node Graph[], int rozdroza, int * edge, int fo){ //funkcja analizujaca wiersz by moc stworzyc graf
+void analyzeMaze ( char x[][3], int kolumny, int * ost, int * edg, int * medg, int * unknown, edge_t Graph[], int rozdroza, int * edge, int fo){ //funkcja analizujaca wiersz by moc stworzyc graf
 
 	//zmienna do operacji
 	int i = 0;
@@ -392,11 +392,11 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 					}else{
 						if(medg[i]/10 > * ost){
 		
-							addNode( Graph, medg[i]/10, *ost, edg[i], kierunek(kierunekdekod(medg[i]), 'N'), rozdroza);
+							addEdge( Graph, medg[i]/10, *ost, edg[i], direction2Number ( decodeDirection (medg[i]), 'N'), rozdroza);
 	
 						}else{
 	
-							addNode( Graph, *ost, medg[i]/10, edg[i], kierunek( 'N', kierunekdekod(medg[i])), rozdroza);
+							addEdge( Graph, *ost, medg[i]/10, edg[i], direction2Number ( 'N', decodeDirection (medg[i])), rozdroza);
 						
 						}
 					}
@@ -405,7 +405,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 
 				}else if ( G == 1 && medg[i] < 0 && edg[i] > 0){
 
-					IDupdate(medg, medg[i], kierunekkod(*ost, 'N'), kolumny);
+					updateID (medg, medg[i], codeDirection (*ost, 'N'), kolumny);
 					edg[i] = 0;
 				}
 
@@ -416,7 +416,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 					if( medg[i-1] < 0){
 
 						//to otrzymuje on wartosc indeksu od rozdroza
-						IDupdate(medg, medg[i-1], kierunekkod(*ost, 'W'), kolumny);
+						updateID (medg, medg[i-1], codeDirection (*ost, 'W'), kolumny);
 
 					//jezeli juz oindeksowana liczba
 					}else{
@@ -429,11 +429,11 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 						}else{
 							if(medg[i]/10 > * ost){
 	
-	                                        	        addNode( Graph, medg[i-1]/10, *ost, edg[i-1], kierunek(kierunekdekod(medg[i-1]), 'W'), rozdroza);
+	                                        	        addEdge( Graph, medg[i-1]/10, *ost, edg[i-1], direction2Number ( decodeDirection (medg[i-1]), 'W'), rozdroza);
 	
 	                                        	}else{
 	
-        	                                	        addNode( Graph, *ost, medg[i-1]/10, edg[i-1], kierunek('W', kierunekdekod(medg[i-1])), rozdroza);
+        	                                	        addEdge( Graph, *ost, medg[i-1]/10, edg[i-1], direction2Number ('W', decodeDirection (medg[i-1])), rozdroza);
 	
 	                                        	}
 						}
@@ -446,7 +446,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 				if (D == 1){
 
 					edg[i] = 1;
-					medg[i] = kierunekkod(*ost,'P');
+					medg[i] = codeDirection (*ost,'P');
 
 				}
 
@@ -454,7 +454,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 				if (P == 1 && i <= kolumny - 2){ //K?
 
 					edg[i+1] = 1;
-					medg[i+1] = kierunekkod(*ost, 'E');
+					medg[i+1] = codeDirection (*ost, 'E');
 				}
 				
 
@@ -493,12 +493,12 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 						//jezeli unknown -> lewo unkown gora ID
 						if(edg[i-1] > 0 && edg[i] >= 0){
 
-							IDupdate( medg, medg[i-1], medg[i], kolumny);
+							updateID ( medg, medg[i-1], medg[i], kolumny);
 
 						//jezeli zaulek -> lewo zaulek gora ID lub unknown
 						} else if ( edg[i-1] < -5){
 
-							IDdestroyer( edg, medg, kolumny, medg[i], i);
+							markDeadEnd ( edg, medg, kolumny, medg[i], i);
 
 						}
 
@@ -508,12 +508,12 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 						// gora unknown lewo ID
 						if( edg[i] > 0){
 
-							IDupdate( medg, medg[i], medg[i-1], kolumny);
+							updateID ( medg, medg[i], medg[i-1], kolumny);
 
 						//gora zaulek lewo ID/unknown
 						}else if ( edg[i] < -5){
 
-							IDdestroyer( edg, medg, kolumny, medg[i-1], i);
+							markDeadEnd ( edg, medg, kolumny, medg[i-1], i);
 
 						}
 
@@ -529,11 +529,11 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 						}else{
 							if(medg[i]/10 > * ost){
                                                 	
-                                                		addNode( Graph, medg[i]/10, medg[i-1]/10, edg[i], kierunek(kierunekdekod(medg[i]), kierunekdekod(medg[i-1])), rozdroza);
+                                                		addEdge( Graph, medg[i]/10, medg[i-1]/10, edg[i], direction2Number ( decodeDirection (medg[i]), decodeDirection (medg[i-1])), rozdroza);
 	
 	                                        	}else{
 	
-	                                                	addNode( Graph, medg[i-1]/10, medg[i]/10, edg[i], kierunek( kierunekdekod(medg[i-1]), kierunekdekod(medg[i])), rozdroza);
+	                                                	addEdge( Graph, medg[i-1]/10, medg[i]/10, edg[i], direction2Number ( decodeDirection (medg[i-1]), decodeDirection (medg[i])), rozdroza);
 	
 	                                        	}
 						}
@@ -572,7 +572,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
 					}
 
 					//niszczymy wszytsko co jest z ID ktore ma kontakt z zaulkiem
-                                        IDdestroyer( edg, medg, kolumny, medg[i], i);
+                                        markDeadEnd ( edg, medg, kolumny, medg[i], i);
 					edg[i] = -100;
 
                                         //zaułek usuń liczbe ktora tu szla lub wstaw -1 = tam zaulek => nie licz
@@ -594,7 +594,7 @@ void analyzemaze(char x[][3], int kolumny, int * ost, int * edg, int * medg, int
                         printf(" \n %i X: EDG: %i  MEDG:%i \n" , i, edg[o], medg[o]);
                 }
 		printf("\n \n");
-		IDmanager(edg,medg,kolumny);
+		updateValue (edg,medg,kolumny);
 		
 
 	}

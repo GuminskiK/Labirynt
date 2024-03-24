@@ -1,6 +1,6 @@
-#include "Wczyt_podst.h"
+#include "mazePreanalyzer.h"
 
-void policz_kolumny(FILE * f, int * kolumny){ //funckcja liczaca kolumny
+void countColumns(FILE * f, int * kolumny){ //funckcja liczaca kolumny
 	
         //bufor do fgetc        
         char c;
@@ -12,7 +12,7 @@ void policz_kolumny(FILE * f, int * kolumny){ //funckcja liczaca kolumny
         }
 }
 
-void policz_wiersze(FILE * f, int * wiersze){ //funkcja liczaca wiersze
+void countRows(FILE * f, int * wiersze){ //funkcja liczaca wiersze
 
         //bufor do fgets
         char buf [2050];
@@ -28,7 +28,7 @@ void policz_wiersze(FILE * f, int * wiersze){ //funkcja liczaca wiersze
 }
 
 
-void szukajwezlow(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * wezel_K){
+void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * wezel_K){
 	
 	//zmienna do operacji
         int i = 0;
