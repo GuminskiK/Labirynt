@@ -1,5 +1,13 @@
 #include "mazePreanalyzer.h"
 
+#define G x[i][0]
+#define P x[i+1][1]
+#define L x[i-1][1]
+#define D x[i][2]
+
+#define D1(a) a == ' ' || a == 'P' || a == 'K'
+#define D2(a,b,c,d,e) a == e || b == e || c == e || d == e
+
 void countColumns(FILE * f, int * kolumny){ //funckcja liczaca kolumny
 	
         //bufor do fgetc        
@@ -43,37 +51,37 @@ void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * w
                         int h = 0;
 
                         //czy bloczek na gorze jest sciezka, poczatek i koniec to takze czesc sciezki
-                        if(x[i][0] == ' ' || x[i][0] == 'P' || x[i][0] == 'K' ) {
+                        if( D1 (G) ) {
                                 h+=1;
                         }
 
                         //to co u gory dla lewa
-                        if(x[i-1][1] == ' '|| x[i-1][1] == 'P' || x[i-1][1] == 'K'){
+                        if( D1 (L) ){
                                 h+=1;
                         }
 
                         //to co u gory dla prawa
-                        if(x[i+1][1] == ' ' || x[i+1][1] == 'P' || x[i+1][1] == 'K'){
+                        if( D1 (P) ){
                                 h+=1;
                         }
 
                         //to co u gory dla dolu
-                        if(x[i][2] ==  ' ' || x[i][2] == 'P' || x[i][2] == 'K'){
+                        if( D1 (D)){
                                 h+=1;
                         }
 
                         //jezeli dookola sciezki sa 3 lub wiecej pol sciezki to jest to rozdroze
-                        if( h >= 3 || x[i][0] == 'P' ||  x[i][2] == 'P' ||  x[i-1][1] == 'P' ||  x[i+1][1] == 'P' ||   x[i][0] == 'K' ||  x[i][2] == 'K' ||  x[i-1][1] == 'K' ||  x[i+1][1] == 'K') {
+                        if( h >= 3 || D2( G, P, D, L, 'P') || D2(G, P, D, L, 'K')) {
                                 
 				*rozdroza +=1;
                                 x[i][1] = 'O';
 				
 				//zapisanie numeru wezla znajdujacego sie obok wejscia
-				if (x[i][0] == 'P' ||  x[i][2] == 'P' ||  x[i-1][1] == 'P' ||  x[i+1][1] == 'P'){
+				if ( D2( G, P, D, L, 'P')){
 				
 					*wezel_P = *rozdroza;
 				//zapisanie numeru wezla znajdujacegp sie obok wyjscia
-				} else if (x[i][0] == 'K' ||  x[i][2] == 'K' ||  x[i-1][1] == 'K' ||  x[i+1][1] == 'K'){
+				} else if ( D2( G, P, D, L, 'K')){
 				
 					*wezel_K = *rozdroza;
 				
