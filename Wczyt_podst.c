@@ -1,15 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "Wczyt_podst.h"
 
 void policz_kolumny(FILE * f, int * kolumny){ //funckcja liczaca kolumny
-
+	
         //bufor do fgetc        
-        int c = 0;
+        char c;
 
         //petla do liczenia kolumn
-        while( (c = fgetc(f)) != EOF && c != '\n'){
-
+        while ((c = fgetc(f)) != EOF && c != '\n'){
                 *kolumny += 1;
 
         }
@@ -32,7 +29,7 @@ void policz_wiersze(FILE * f, int * wiersze){ //funkcja liczaca wiersze
 
 
 void szukajwezlow(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * wezel_K){
-
+	
 	//zmienna do operacji
         int i = 0;
 

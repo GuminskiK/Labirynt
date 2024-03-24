@@ -1,7 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "Czytaj.h"
-
+#include <stdio.h>
 void czytaj(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
 	
 	//zmienne do operacji
