@@ -1,5 +1,5 @@
-#ifndef _node_
-#define _node_
+#ifndef _edge_
+#define _edge_
 
 typedef struct{
 
@@ -7,6 +7,6 @@ typedef struct{
         unsigned int Value: 14;
         unsigned int Direction: 4;
 	unsigned int X: 3;
-}Node;
+}edge_t;
 
 #endif
