@@ -1,8 +1,7 @@
-#include <stdio.h>
-
 #ifndef _fileReader_
 #define _fileReader_
 
+#include <stdio.h>
 #include <stdlib.h>
 
 void readTXT(char x[][3], FILE * f, int y);
