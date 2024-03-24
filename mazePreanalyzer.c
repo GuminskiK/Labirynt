@@ -5,8 +5,8 @@
 #define L x[i-1][1]
 #define D x[i][2]
 
-#define D1(a) a == ' ' || a == 'P' || a == 'K'
-#define D2(a,b,c,d,e) a == e || b == e || c == e || d == e
+#define Path(a) a == ' ' || a == 'P' || a == 'K'
+#define InOut(a,b,c,d,e) a == e || b == e || c == e || d == e
 
 void countColumns(FILE * f, int * kolumny){ //funckcja liczaca kolumny
 	        
@@ -45,34 +45,34 @@ void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * w
                         int h = 0;
 
                         //sprawdzamy czy pobliskie elementy tablicy sa sciezkami
-                        if( D1 (G) ) {
+                        if( Path (G) ) {
                                 h+=1;
                         }
 
-                        if( D1 (L) ){
+                        if( Path (L) ){
                                 h+=1;
                         }
 
-                        if( D1 (P) ){
+                        if( Path (P) ){
                                 h+=1;
                         }
 
-                        if( D1 (D)){
+                        if( Path (D)){
                                 h+=1;
                         }
 
                         //jezeli dookola sciezki sa 3 lub wiecej pol sciezki to jest to rozdroze
-                        if( h >= 3 || D2( G, P, D, L, 'P') || D2(G, P, D, L, 'K')) {
+                        if( h >= 3 || InOut( G, P, D, L, 'P') || InOut(G, P, D, L, 'K')) {
                                 
 				*rozdroza +=1;
                                 x[i][1] = 'O';
 				
 				//zapisanie numeru wezla obok wejscia/wyjscia
-				if ( D2( G, P, D, L, 'P')){
+				if ( InOut( G, P, D, L, 'P')){
 				
 					*wezel_P = *rozdroza;
 
-				} else if ( D2( G, P, D, L, 'K')){
+				} else if ( InOut( G, P, D, L, 'K')){
 				
 					*wezel_K = *rozdroza;
 				
