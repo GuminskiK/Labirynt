@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "define.h"
 
 void countColumns(FILE * f, int * kolumny);
 void countRows(FILE * f, int * wiersze);

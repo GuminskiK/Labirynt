@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "mazePreanalyzer.h"
+#include "mazeAnalyzer.h"
 #include "fileReader.h"
+#include "mazeAnalyzer.h"
+#include "graphCreator.h"
 
 
 
@@ -61,6 +64,12 @@ int main(int argc, char ** argv){
 
         }
 	printf("\nRozdroza:%i\n", rozdroza);
+	
+	rewind(in);
+	
+	int edge = 0;
+        //analiza labiryntu by stworzyc graf
+        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in);
 
 	return 0;
 

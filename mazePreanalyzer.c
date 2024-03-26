@@ -1,14 +1,5 @@
 #include "mazePreanalyzer.h"
 
-#define G x[i][0]
-#define P x[i+1][1]
-#define L x[i-1][1]
-#define D x[i][2]
-
-#define Path(a) a == ' ' || a == 'P' || a == 'K'
-#define InOut(a,b,c,d,e) a == e || b == e || c == e || d == e
-
-
 void countColumns(FILE * f, int * kolumny){ //funckcja liczaca kolumny
 	        
         char c;
@@ -46,35 +37,35 @@ void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * w
                         int h = 0;
 
                         //sprawdzamy czy pobliskie elementy tablicy sa sciezkami
-                        if( Path (G) ) {
+                        if( Path (GX) ) {
                                 h+=1;
                         }
 
-                        if( Path (L) ){
+                        if( Path (LX) ){
                                 h+=1;
                         }
 
-                        if( Path (P) ){
+                        if( Path (PX) ){
                                 h+=1;
                         }
 
-                        if( Path (D)){
+                        if( Path (DX)){
                                 h+=1;
                         }
 
 
                         //jezeli dookola sciezki sa 3 lub wiecej pol sciezki to jest to rozdroze
-                        if( h >= 3 || InOut( G, P, D, L, 'P') || InOut(G, P, D, L, 'K') || (Path(G) || Path(D)) && (Path(L) || Path(P))  ) {
+                        if( h >= 3 || InOut( GX, PX, DX, LX, 'P') || InOut(GX, PX, DX, LX, 'K') || (Path(GX) || Path(DX)) && (Path(LX) || Path(PX))  ) {
                                 
 				*rozdroza +=1;
                                 x[i][1] = 'O';
 				
 				//zapisanie numeru wezla obok wejscia/wyjscia
-				if ( InOut( G, P, D, L, 'P')){
+				if ( InOut( GX, PX, DX, LX, 'P')){
 				
 					*wezel_P = *rozdroza;
 
-				} else if ( InOut( G, P, D, L, 'K')){
+				} else if ( InOut( GX, PX, DX, LX, 'K')){
 				
 					*wezel_K = *rozdroza;
 				
