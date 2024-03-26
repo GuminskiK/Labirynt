@@ -69,8 +69,8 @@ int main(int argc, char ** argv){
 	
 	int edge = 0;
         //analiza labiryntu by stworzyc graf
-        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in);
-
+        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in, out);
+	
 	return 0;
 
 }

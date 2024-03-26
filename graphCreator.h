@@ -5,10 +5,9 @@
 #include <stdlib.h>
 #include "fileReader.h"
 #include "mazeAnalyzer.h"
-#include "edge.h"
+#include "fileWriter.h"
 
-
-void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge, int wiersze, FILE * in);
+void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge, int wiersze, FILE * in, FILE * out);
 
 #endif
 

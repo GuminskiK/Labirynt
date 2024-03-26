@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "edge.h"
 #include "define.h"
 
 void analyzeMaze ( char x[][3], int kolumny, int *ost, int * edg, int * medg, int * unknown, int Graph[][8], int * rozdroza, int * edge);
