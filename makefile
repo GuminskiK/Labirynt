@@ -3,3 +3,5 @@ all:
 
 clean: 
 	rm *.gch
+dwa:
+	gcc main2.c graphReader.c graphReader.h node.h solveMaze.c solveMaze.h solutionWriter.c solutionWriter.h
