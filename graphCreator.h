@@ -7,7 +7,7 @@
 #include "mazeAnalyzer.h"
 #include "fileWriter.h"
 
-void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge, int wiersze, FILE * in, FILE * out);
+void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge, int wiersze, FILE * in, FILE * out, int wezel_p, int wezel_k, int PD, int KD);
 
 #endif
 

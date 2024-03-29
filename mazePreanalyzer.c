@@ -24,7 +24,7 @@ void countRows(FILE * f, int * wiersze){ //funkcja liczaca wiersze
 }
 
 
-void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * wezel_K){
+void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * wezel_K, int * PD, int * KD){
 	
         int i = 0;
 
@@ -64,11 +64,28 @@ void countNodes(char x[][3], int kolumny, int * rozdroza, int * wezel_P, int * w
 				if ( InOut( GX, PX, DX, LX, 'P')){
 				
 					*wezel_P = *rozdroza;
-
+					if ( GX == 'P'){
+						*PD = 0;
+					}else if ( PX == 'P'){
+						*PD = 1;
+					}else if (DX == 'P'){
+						*PD = 2;
+					}else{
+						*PD = 3;
+					}
 				} else if ( InOut( GX, PX, DX, LX, 'K')){
 				
 					*wezel_K = *rozdroza;
 				
+					if ( GX == 'K'){
+                                                *KD = 0;
+                                        }else if ( PX == 'K'){
+                                                *KD = 1;
+                                        }else if (DX == 'K'){
+                                                *KD = 2;
+                                        }else{
+                                                *KD = 3;
+                                        }
 				}
                         }
               }

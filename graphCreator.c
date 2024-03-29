@@ -1,6 +1,6 @@
 #include "graphCreator.h"
 
-void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge,int wiersze, FILE * in, FILE * out){
+void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge,int wiersze, FILE * in, FILE * out, int wezel_p, int wezel_k, int PD, int KD){
 
 	//edg - do przetrzymywania liczb, medg - do przechowywania ID liczb
 	int edg[kolumny -1];
@@ -50,5 +50,5 @@ void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge,int wiersz
 
 	}
 
-	writeFile( out, rozdroza, Graph);
+	writeFile( out, rozdroza, Graph, wezel_p, wezel_k, PD, KD);
 }

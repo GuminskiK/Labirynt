@@ -46,7 +46,8 @@ int main(int argc, char ** argv){
 	int rozdroza = 0;
 	int wezel_p;
 	int wezel_k;
-	
+	int PD;
+	int KD;
 	//petla do policzenia ile jest rozdroz
         for (int y = 0; y < wiersze-2; y++){
 
@@ -60,7 +61,7 @@ int main(int argc, char ** argv){
                 readTXT ( x, in, y);
 
                 //funkcja sprawdzajaca czy w trzech liniach w srodkowej sa rozdroza
-                countNodes (x, kolumny, &rozdroza, &wezel_p, &wezel_k);
+                countNodes (x, kolumny, &rozdroza, &wezel_p, &wezel_k, &PD, &KD);
 
         }
 	printf("\nRozdroza:%i\n", rozdroza);
@@ -69,7 +70,7 @@ int main(int argc, char ** argv){
 	
 	int edge = 0;
         //analiza labiryntu by stworzyc graf
-        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in, out);
+        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in, out, wezel_p, wezel_k, PD, KD);
 	
 	return 0;
 
