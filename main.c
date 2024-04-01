@@ -35,9 +35,6 @@ int main(int argc, char ** argv){
 
         countColumns (in, &kolumny);
         countRows (in, &wiersze);
-
-
-	printf("\nKolumny: %i Wiersze: %i\n", kolumny, wiersze);
 	
 	rewind(in);
 
@@ -63,7 +60,6 @@ int main(int argc, char ** argv){
                 countNodes (x, kolumny, &rozdroza, &wezel_p, &wezel_k, &PD, &KD);
 
         }
-	printf("\nRozdroza:%i\n", rozdroza);
 	
 	rewind(in);
 	

@@ -1,7 +1,18 @@
-all:
-	gcc main.c mazePreanalyzer.c mazePreanalyzer.h fileReader.c fileReader.h mazeAnalyzer.c mazeAnalyzer.h define.h graphCreator.c graphCreator.h fileWriter.c fileWriter.h
+all: preprocessor analyzer
 
-clean: 
-	rm *.gch
-dwa:
-	gcc main2.c graphReader.c graphReader.h node.h solveMaze.c solveMaze.h solutionWriter.c solutionWriter.h
+preprocessor: main.o mazePreanalyzer.o fileReader.o mazeAnalyzer.o define.h graphCreator.o fileWriter.o
+	gcc $(CFLAGS) -o $@ $^
+
+analyzer: main2.o graphReader.o node.h solveMaze.o solutionWriter.o
+	gcc $(CFLAGS) -o $@ $^
+
+%.o: %.c $(INC_DIR)/*.h
+	$(CC) $(CFLAGS) -I include -c -o $@ $<
+
+clean:
+	rm -f preprocessor analyzer *.o
+
+run_1: preprocessor 
+	time ./preprocessor $(src)
+run_2: analyzer run_1
+	time ./analyzer out

@@ -45,10 +45,5 @@ void createGraph(char x[][3], int kolumny, int * rozdroza, int * edge,int wiersz
 		    
         }
 
-	for (int i = 1; i < (*rozdroza) + 1; i++){
-		printf("GRAPH ID:%i Połączenia: N:%i L:%i E:%i L:%i P:%i L:%i W:%i L:%i\n", i, Graph[i][0], Graph[i][4], Graph[i][1], Graph[i][5], Graph[i][2], Graph[i][6], Graph[i][3], Graph[i][7]);
-
-	}
-
 	writeFile( out, rozdroza, Graph, wezel_p, wezel_k, PD, KD);
 }

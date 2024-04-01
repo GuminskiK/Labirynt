@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "graphReader.h"
-#include "solveMaze.h"
+#include "mazeSolver.h"
 
 
 int main (int argc, char ** argv){
