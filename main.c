@@ -3,7 +3,6 @@
 #include "mazePreanalyzer.h"
 #include "mazeAnalyzer.h"
 #include "fileReader.h"
-#include "mazeAnalyzer.h"
 #include "graphCreator.h"
 
 
