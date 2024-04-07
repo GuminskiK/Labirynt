@@ -3,7 +3,7 @@ all: preprocessor analyzer
 preprocessor: main.o mazePreanalyzer.o fileReader.o mazeAnalyzer.o define.h graphCreator.o fileWriter.o
 	gcc $(CFLAGS) -o $@ $^
 
-analyzer: main2.o graphReader.o node.h solveMaze.o solutionWriter.o
+analyzer: main2.o graphReader.o node.h mazeSolver.o solutionWriter.o helpWriter.o
 	gcc $(CFLAGS) -o $@ $^
 
 %.o: %.c $(INC_DIR)/*.h
