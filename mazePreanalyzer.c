@@ -1,12 +1,21 @@
 #include "mazePreanalyzer.h"
 
-void countColumns(FILE * f, int * kolumny){ //funckcja liczaca kolumny
-	        
+void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         char c;
-
-        while ((c = fgetc(f)) != EOF && c != '\n'){
+        if( x == 2 ){  
+          
+          while ((c = fgetc(f)) != EOF && c != '\n'){
                 *kolumny += 1;
 
+                 }
+        }
+        else if( x == 1 )
+        {
+              
+              int licz = 0;
+              while( (++licz) != 41 ) ;
+              licz = 0;
+              while( (++licz) != 17 )
         }
 }
 
