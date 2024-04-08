@@ -29,12 +29,14 @@ int main(int argc, char ** argv){
                 printf("\nNie udało się otworzyć/stworzyć pliku wyjściowego.\n");
 		return 1;
         }
+        
+        int plik = checkFormat(in);
 
 	int kolumny = 0;
         int wiersze = 1;
 
-        countColumns (in, &kolumny);
-        countRows (in, &wiersze);
+        countColumns (in, &kolumny, plik);
+        countRows (in, &wiersze, plik);
 	
 	rewind(in);
 

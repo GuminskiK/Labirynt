@@ -11,16 +11,21 @@ void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         }
         else if( x == 1 )
         {
-              
-              int licz = 0;
+              char *tab;
+              int licz = 0, i=0;
               while( (++licz) != 41 ) ;
               licz = 0;
               while( (++licz) != 17 )
+              {
+                  c = fgetc(f);
+                  tab[i++] = c;
+              }
+              *kolumny = binfile(tab, 16);
         }
 }
 
-void countRows(FILE * f, int * wiersze){ //funkcja liczaca wiersze
-
+void countRows(FILE * f, int * wiersze, int x){ //funkcja liczaca wiersze
+        if( x == 2 ){
         char buf [2050];
 
         while ( fgets(buf, 2050,f) != NULL && ( buf[0] == 'X' || buf[0] == 'P' || buf[0] == 'K' )){
@@ -28,7 +33,20 @@ void countRows(FILE * f, int * wiersze){ //funkcja liczaca wiersze
                 *wiersze += 1;
 
         }
-
+    }
+        else if( x == 1 )
+        {
+              char *tab;
+              int licz = 0, i=0;
+              while( (++licz) != 57 ) ;
+              licz = 0;
+              while( (++licz) != 17 )
+              {
+                  c = fgetc(f);
+                  tab[i++] = c;
+              }
+              *wiersze = binfile(tab, 16);
+        }
 
 }
 
