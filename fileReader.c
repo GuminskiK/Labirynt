@@ -4,7 +4,7 @@
 int checkFormat( FILE *f )
 {
 	int x;
-        char c = getc(f);
+        char c = fgetc(f);
         if( isdigit(c) ) x = 1; // plik binarny
 	else x = 2; // plik tekstowy txt
 	

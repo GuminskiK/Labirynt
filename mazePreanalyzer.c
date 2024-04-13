@@ -11,9 +11,9 @@ void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         }
         else if( x == 1 )
         {
-              char *tab;
+              char *tab = malloc(16 * sizeof(char));
               int licz = 0, i=0;
-              while( (++licz) != 41 ) ;
+              while( (++licz) != 41 ) c = fgetc(f);
               licz = 0;
               while( (++licz) != 17 )
               {
