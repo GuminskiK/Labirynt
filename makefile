@@ -1,6 +1,6 @@
 all: preprocessor analyzer
 
-preprocessor: main.o mazePreanalyzer.o fileReader.o bin_changer.o mazeAnalyzer.o define.h graphCreator.o fileWriter.o
+preprocessor: main.o mazePreanalyzer.o fileReader.o mazeAnalyzer.o define.h graphCreator.o fileWriter.o
 	gcc $(CFLAGS) -o $@ $^
 
 analyzer: main2.o graphReader.o node.h mazeSolver.o solutionWriter.o helpWriter.o

@@ -38,6 +38,8 @@ int main(int argc, char ** argv){
         countColumns (in, &kolumny, plik);
         countRows (in, &wiersze, plik);
 	
+	if(plik == 1) readRLE();
+	
 	rewind(in);
 
 	char x[kolumny][3];

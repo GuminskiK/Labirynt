@@ -11,16 +11,11 @@ void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         }
         else if( x == 1 )
         {
-              char *tab = malloc(16 * sizeof(char));
-              int licz = 0, i=0;
-              while( (++licz) != 41 ) c = fgetc(f);
-              licz = 0;
-              while( (++licz) != 17 )
-              {
-                  c = fgetc(f);
-                  tab[i++] = c;
-              }
-              *kolumny = binfile(tab, 16);
+             int *w;
+           fread(w, 1, 5, f);
+             *w = 0;
+             fread(w, 1, 2, f);
+             *kolumny = *w;
         }
 }
 
@@ -36,16 +31,11 @@ void countRows(FILE * f, int * wiersze, int x){ //funkcja liczaca wiersze
     }
         else if( x == 1 )
         {
-              char *tab;
-              int licz = 0, i=0;
-              while( (++licz) != 57 ) ;
-              licz = 0;
-              while( (++licz) != 17 )
-              {
-                  c = fgetc(f);
-                  tab[i++] = c;
-              }
-              *wiersze = binfile(tab, 16);
+             int *w;
+             fread(w, 1, 7, f);
+             *w = 0;
+             fread(w, 1, 2, f);
+             *wiersze = *w;
         }
 
 }
