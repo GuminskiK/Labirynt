@@ -1,21 +1,15 @@
 #include "fileReader.h"
+#include <string.h>
 
-
-int checkFormat( FILE *f )
+int checkFormat( char *c )
 {
-    int x;
-    int *i;
-  //  printf("im in\n");
-    fread(i, 1, 4, f);
-    if(*i == 1381122627) 
-    {
-          x = 1;
-         // *i = 0;
-          fread(i, 1, 1, f);
-        //  printf("%d\n", *i);
-    }
-    else x = 2;
-    return x;
+    int x = strlen(c);
+    int p;
+   char l[4];
+   strcpy(l, c + x - 3);
+   if( strcmp(l,"bin") == 0 ) p = 1;
+   else p = 2;
+    return p;
 }
 
 void readTXT(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy

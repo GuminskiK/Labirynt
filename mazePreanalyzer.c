@@ -11,14 +11,11 @@ void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         }
         else if( x == 1 )
         {     
-              rewind(f);
-             int *w;
-             fread(w, 1, 5, f); 
-             *w=0;
-             printf("co jest nie tak z tym jeszykiem\n");
-             fread(w, 1, 2, f);
-             *kolumny = *w;
-             printf("nwm jakas glupota %d\n", *w);
+              int *w;
+              fread(w, 1, 5, f);
+              *w = 0;
+              fread(w, 1, 2, f);
+              *kolumny = *w;
         }
 }
 
@@ -35,23 +32,12 @@ void countRows(FILE * f, int * wiersze, int x){ //funkcja liczaca wiersze
         else if( x == 1 )
         {
             rewind(f);
-             int *r;
-             printf("nie no juz tu nie mozesz tego zrobic\n");
-             fread(r, 1, 4, f);
-             printf("mam cie\n");
-             *r = 0;
-             printf("okkkkkk???\n");
-             fread(r, 1, 1, f);
-             *r = 0;
-             printf("co jest doktorku\n");
-             fread(r, 1, 2, f);
-             *r = 0;
-             printf("zaraz wypluje flaki\n");
-             fread(r, 1, 2, f);
-             printf("oisajdoaisj %d\n", *r);
-             //int ok = *r;
-             *wiersze = *r;
-             printf("???\n");
+            int *w;
+            int *pom;
+            fread(pom, 1, 5, f);
+            fread(pom, 1, 2, f);
+            fread(w, 1, 2, f);
+            *wiersze = *w;
         }
 
 }

@@ -14,10 +14,11 @@ int main(int argc, char ** argv){
 		printf("\nNależy podać plik wejściowy jako argument. Jeżeli potrzebujesz pomocy podaj w argumencie -h.\n");
 		return 1;
 	}
-	FILE * in = fopen(argv[1], "r");
-	printf("ludzie ratunu\n");
+	FILE *in;
+	int plik = checkFormat(argv[1]);
+	if(plik == 1) in = fopen(argv[1], "rb");
+	else in = fopen(argv[1], "r");
 	FILE * out = fopen("out", "w");
-printf("?????????\n");
 	if ( in == NULL){
 	
 		printf("\nNie udało się otworzyć pliku.\n");
@@ -30,15 +31,16 @@ printf("?????????\n");
 		return 1;
         }
         
-        int plik = checkFormat(in);
+        
 printf("jest git\n");
 	int kolumny = 0;
         int wiersze = 1;
         
         countColumns (in, &kolumny, plik);
-        printf("not here\n");
+        printf("not here %d\n", kolumny);
         countRows (in, &wiersze, plik);
-	printf("jest ok\n");
+	printf("jest ok %d\n", wiersze);
+	return 0;
 	
 	rewind(in);
 	printf("supcio\n");
