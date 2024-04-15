@@ -49,21 +49,23 @@ void readTXT(char x[][3], FILE * f, int y){ //wczytuje wiersze do tablicy
 void readRLE( FILE *f, int kol )
 {
         //char *x = "zapis.txt";
-        FILE *fw = fopen ("zapis", "w");
+        FILE *fw = fopen ("zapis.txt", "w");
         int p[4], i;
         int*pom;
+        pom = malloc(sizeof(int));
         for( i = 0; i < 4; i++ )
         {
               fread(pom, 1, 2, f);
               p[i] =*pom;
              *pom = 0;
+             printf("%d\n", p[i]);
         }
         for( i = 2; i <= 12; i+=2 )
         {
         fread(pom, 1, 2, f);
        *pom = 0;
         }
-        fread(pom, 1, 5, f); // counter slow kodowych
+        fread(pom, 1, 4, f); // counter slow kodowych
         int ile =*pom;
         fread(pom, 1, 4, f);
         int col = 0, row = 1;
@@ -85,17 +87,12 @@ void readRLE( FILE *f, int kol )
                           row++;
                     }
                     col++;
-                    if(col == p[0] && row == p[1]) 
-                    {
-                          fprintf(fw, "P");
-                          continue;
-                    }
-                    else if(col == p[2] && row == p[3])
-                    {
-                          fprintf(fw, "K");
-                          continue;
-                    }
-                    fprintf(fw, "%c", wp);                   
+                    if(col == p[0] && row == p[1]) fprintf(fw, "P");
+                    else if(col == p[2] && row == p[3]) fprintf(fw, "K");
+                    else if( wp == 'X' ) fprintf(fw, "X");
+                    else if( wp == ' ' ) fprintf(fw, " ");
+                    
+                   // fprintf(fw, "%c", wp);                   
               }
         }
         fclose(fw);

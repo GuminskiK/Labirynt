@@ -12,6 +12,7 @@ void countColumns(FILE * f, int * kolumny, int x){ //funckcja liczaca kolumny
         else if( x == 1 )
         {     
               int *w;
+              w = malloc(sizeof(int));
               fread(w, 1, 5, f);
               *w = 0;
               fread(w, 1, 2, f);
@@ -31,12 +32,11 @@ void countRows(FILE * f, int * wiersze, int x){ //funkcja liczaca wiersze
     }
         else if( x == 1 )
         {
-            rewind(f);
+            //rewind(f);
             int *w;
-            int *pom;
-            fread(pom, 1, 5, f);
-            fread(pom, 1, 2, f);
-            fread(w, 1, 2, f);
+            w = malloc(sizeof(int));
+           
+           fread(w, 1, 2, f);
             *wiersze = *w;
         }
 

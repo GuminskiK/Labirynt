@@ -38,20 +38,23 @@ printf("jest git\n");
         
         countColumns (in, &kolumny, plik);
         printf("not here %d\n", kolumny);
+        //rewind(in);
         countRows (in, &wiersze, plik);
 	printf("jest ok %d\n", wiersze);
-	return 0;
 	
-	rewind(in);
+	
+	
+	//rewind(in);
 	printf("supcio\n");
 	char *nazwa;
 	if(plik == 1) 
 	{
 	      readRLE(in, kolumny);
-	      nazwa = "zapis";
-	      return 0;
+	      nazwa = "zapis.txt";
+	      
         }
         else nazwa = argv[1];
+        printf("czy tutaj wszytsko gra?\n");
         fclose(in);
         FILE *inn = fopen(nazwa, "r");
 	char x[kolumny][3];
