@@ -58,7 +58,6 @@ void readRLE( FILE *f, int kol )
               fread(pom, 1, 2, f);
               p[i] =*pom;
              *pom = 0;
-             printf("%d\n", p[i]);
         }
         for( i = 2; i <= 12; i+=2 )
         {
@@ -67,7 +66,6 @@ void readRLE( FILE *f, int kol )
         }
         fread(pom, 1, 4, f); // counter slow kodowych
         int ile =*pom;
-        printf("%d to jest ile\n", ile);
         fread(pom, 1, 7, f);
         int col = 0, row = 1;
         char wp;
