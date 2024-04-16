@@ -14,10 +14,11 @@ int main(int argc, char ** argv){
 		printf("\nNależy podać plik wejściowy jako argument. Jeżeli potrzebujesz pomocy podaj w argumencie -h.\n");
 		return 1;
 	}
-
-	FILE * in = fopen(argv[1], "r");
+	FILE *in;
+	int plik = checkFormat(argv[1]);
+	if(plik == 1) in = fopen(argv[1], "rb");
+	else in = fopen(argv[1], "r");
 	FILE * out = fopen("out", "w");
-
 	if ( in == NULL){
 	
 		printf("\nNie udało się otworzyć pliku.\n");
@@ -29,15 +30,33 @@ int main(int argc, char ** argv){
                 printf("\nNie udało się otworzyć/stworzyć pliku wyjściowego.\n");
 		return 1;
         }
-
+        
+        
+printf("jest git\n");
 	int kolumny = 0;
         int wiersze = 1;
-
-        countColumns (in, &kolumny);
-        countRows (in, &wiersze);
+        
+        countColumns (in, &kolumny, plik);
+        printf("not here %d\n", kolumny);
+        //rewind(in);
+        countRows (in, &wiersze, plik);
+	printf("jest ok %d\n", wiersze);
 	
-	rewind(in);
-
+	
+	
+	//rewind(in);
+	printf("supcio\n");
+	char *nazwa;
+	if(plik == 1) 
+	{
+	      readRLE(in, kolumny);
+	      nazwa = "zapis.txt";
+	      return 0;
+        }
+        else nazwa = argv[1];
+        printf("czy tutaj wszytsko gra?\n");
+        fclose(in);
+        FILE *inn = fopen(nazwa, "r");
 	char x[kolumny][3];
 	int rozdroza = 0;
 	int wezel_p;
@@ -54,18 +73,18 @@ int main(int argc, char ** argv){
                 }
 
                 //wczytywanie
-                readTXT ( x, in, y);
+                readTXT ( x, inn, y);
 
                 //funkcja sprawdzajaca czy w trzech liniach w srodkowej sa rozdroza
                 countNodes (x, kolumny, &rozdroza, &wezel_p, &wezel_k, &PD, &KD);
 
         }
 	
-	rewind(in);
+	rewind(inn);
 	
 	int edge = 0;
         //analiza labiryntu by stworzyc graf
-        createGraph(x,kolumny, &rozdroza, &edge, wiersze, in, out, wezel_p, wezel_k, PD, KD);
+        createGraph(x,kolumny, &rozdroza, &edge, wiersze, inn, out, wezel_p, wezel_k, PD, KD);
 	
 	return 0;
 
