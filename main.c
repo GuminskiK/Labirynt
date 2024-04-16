@@ -51,7 +51,7 @@ printf("jest git\n");
 	{
 	      readRLE(in, kolumny);
 	      nazwa = "zapis.txt";
-	      
+	      return 0;
         }
         else nazwa = argv[1];
         printf("czy tutaj wszytsko gra?\n");

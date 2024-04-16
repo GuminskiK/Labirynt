@@ -51,7 +51,7 @@ void readRLE( FILE *f, int kol )
         //char *x = "zapis.txt";
         FILE *fw = fopen ("zapis.txt", "w");
         int p[4], i;
-        int*pom;
+        int *pom;
         pom = malloc(sizeof(int));
         for( i = 0; i < 4; i++ )
         {
@@ -67,19 +67,24 @@ void readRLE( FILE *f, int kol )
         }
         fread(pom, 1, 4, f); // counter slow kodowych
         int ile =*pom;
+        printf("%d to jest ile\n", ile);
         fread(pom, 1, 4, f);
         int col = 0, row = 1;
         char wp;
+        //ile = 5;
         while(ile--)
         {
               fread(pom, 1, 1, f); // separator
              *pom = 0;
               fread(pom, 1, 1, f); // wall or path
               wp =*pom;
+             // printf("%c\n", wp);
              *pom = 0;
-              fread(pom, 1, 1, f); // ile jest tych pol
+              fread(pom, 1, 1, f); 
+             // printf("ile jest tych pol: %d\n", *pom);// ile jest tych pol
               for( i = 0; i <=*pom; i++)
               {
+                    
                      if(col == kol)
                     {
                           col = 0;
