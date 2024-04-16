@@ -15,4 +15,4 @@ clean:
 run_1: preprocessor 
 	time ./preprocessor $(src)
 run_2: analyzer run_1
-	time ./analyzer out
+	time ./analyzer -f out
