@@ -47,7 +47,6 @@ int main(int argc, char ** argv){
 	{
 	      readRLE(in, kolumny);
 	      nazwa = "zapis.txt";
-	      return 0;
         }
         else nazwa = argv[1];
         fclose(in);
