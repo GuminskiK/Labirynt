@@ -32,20 +32,16 @@ int main(int argc, char ** argv){
         }
         
         
-printf("jest git\n");
 	int kolumny = 0;
         int wiersze = 1;
         
         countColumns (in, &kolumny, plik);
-        printf("not here %d\n", kolumny);
         //rewind(in);
         countRows (in, &wiersze, plik);
-	printf("jest ok %d\n", wiersze);
 	
 	
 	
 	//rewind(in);
-	printf("supcio\n");
 	char *nazwa;
 	if(plik == 1) 
 	{
@@ -54,7 +50,6 @@ printf("jest git\n");
 	      return 0;
         }
         else nazwa = argv[1];
-        printf("czy tutaj wszytsko gra?\n");
         fclose(in);
         FILE *inn = fopen(nazwa, "r");
 	char x[kolumny][3];
