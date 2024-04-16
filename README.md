@@ -12,7 +12,7 @@ Preprocesor uruchamiamy za pomocą komendy:
 ```
 Analizator uruchamiamy za pomocą komendy:
 ```
-./analyzer <nazwa pliku zpreprocesowanego>
+./analyzer -f <nazwa pliku zpreprocesowanego>
 ```
 Możliwe jest także wyświetlenie pomocy, poprzez użycie flagi -h podczas
 uruchamiania, czyli wpisanie komendy:

@@ -13,7 +13,7 @@ void writeHelp( void )
 	printf("Preprocesor uruchamiamy za pomocą komendy:\n");
 	printf("./preprocessor <nazwa pliku wejściowego>\n");
 	printf("Analizator uruchamiamy za pomocą komendy:\n");
-	printf("./analyzer <nazwa pliku zpreprocesowanego>\n");
+	printf("./analyzer -f <nazwa pliku zpreprocesowanego>\n");
 	printf("Możliwe jest także wyświetlenie pomocy, poprzez użycie flagi -h podczas uruchamiania,\n");
 	printf("czyli wpisanie komendy:\n");
 	printf("./analyzer -h\n");
