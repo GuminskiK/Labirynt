@@ -51,9 +51,6 @@ void updateValue( int * edg, int medg[], int kolumny){ //funkcja do zmiany updat
 
 void markDeadEnd ( int * edg, int medg[], int kolumny, int ID, int i){ //funkcja do zaznaczania zaulkow
 
-	//destrukcja po jpn
-	//printf("\n \n HAKAI, %i", ID);
-
 	//idziemy i dla kazdego kto jest kolo zaulka dajemy wartosc ktora spowoduje ze nigdzie sie nie bedzie liczyc
 	for( int y = 1; y < kolumny-1; y++){
 
