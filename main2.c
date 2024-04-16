@@ -23,9 +23,11 @@ int main (int argc, char ** argv){
                                 }
 				 int wezel_p, wezel_k, PD, KD; //do wczytania jakos
 			        int rozdroza = -1;
+				printf("START");
         			readAnalyze(f,&wezel_p, &wezel_k, &PD, &KD);
         			readNumber(&rozdroza, f);
-       				 manageSolving(f, &rozdroza, wezel_p, wezel_k, PD, KD);
+       				manageSolving(f, &rozdroza, wezel_p, wezel_k, PD, KD);
+				printf("STOP");
 
                         break;
                         case ':':
